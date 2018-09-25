@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Image, StyleSheet } from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  TouchableHighlight,
+} from 'react-native';
 import radiantImageSource from '../assets/radiantTower.png';
 import direImageSource from '../assets/direTower.png';
 
@@ -30,6 +35,7 @@ const styles = StyleSheet.create({
 export default function Tower(props) {
   const {
     isRadiant,
+    onTowerPress,
   } = props;
 
   let viewStyle;
@@ -46,10 +52,13 @@ export default function Tower(props) {
   }
   return (
     <View style={viewStyle}>
-      <Image style={imageStyle} source={imageSource} />
+      <TouchableHighlight onPress={onTowerPress}>
+        <Image style={imageStyle} source={imageSource} />
+      </TouchableHighlight>
     </View>
   );
 }
 Tower.propTypes = {
   isRadiant: PropTypes.bool.isRequired,
+  onTowerPress: PropTypes.func.isRequired,
 };

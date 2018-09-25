@@ -13,6 +13,7 @@ export default class TowerContainer extends React.Component {
   }
 
   handleTowerPress() {
+    console.log('click!');
     const { isRadiant } = this.state;
     this.setState({
       isRadiant: !isRadiant,
