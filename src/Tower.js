@@ -4,10 +4,11 @@ import {
   View,
   Image,
   StyleSheet,
-  TouchableHighlight,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import radiantImageSource from '../assets/radiantTower.png';
 import direImageSource from '../assets/direTower.png';
+import courrierImageSource from '../assets/courrier.png';
 
 const styles = StyleSheet.create({
   radiant: {
@@ -24,11 +25,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  radiantImage: {
-
-  },
-  direImage: {
-
+  courrier: {
+    position: 'absolute',
+    top: 50,
+    right: 25,
+    height: 50,
+    width: 50,
   },
 });
 
@@ -52,9 +54,10 @@ export default function Tower(props) {
   }
   return (
     <View style={viewStyle}>
-      <TouchableHighlight onPress={onTowerPress}>
-        <Image style={imageStyle} source={imageSource} />
-      </TouchableHighlight>
+      <TouchableWithoutFeedback onPress={onTowerPress}>
+        <Image style={styles.courrier} source={courrierImageSource} />
+      </TouchableWithoutFeedback>
+      <Image style={imageStyle} source={imageSource} />
     </View>
   );
 }
