@@ -13,14 +13,16 @@ export default class Container extends React.Component {
   }
 
   handleTowerPress() {
+    const { isRadiant } = this.state;
     this.setState({
-      isRadiant: !this.state.isRadiant,
+      isRadiant: !isRadiant,
     });
   }
 
   render() {
+    const { isRadiant } = this.state;
     return (
-      <Screen isRadiant={this.state.isRadiant} />
+      <Screen isRadiant={isRadiant} />
     );
   }
 }

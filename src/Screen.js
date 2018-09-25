@@ -1,7 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Image, StyleSheet } from 'react-native';
 import radiantImageSource from '../assets/radiantTower.png';
 import direImageSource from '../assets/direTower.png';
+
+const styles = StyleSheet.create({
+  radiant: {
+    backgroundColor: 'lightblue',
+  },
+  dire: {
+    backgroundColor: 'darkred',
+  },
+  radiantImage: {
+
+  },
+  direImage: {
+
+  },
+});
 
 export default function Screen(props) {
   const {
@@ -16,7 +32,7 @@ export default function Screen(props) {
     imageStyle = styles.radiantImage;
     imageSource = radiantImageSource;
   } else {
-    viwewStyle = styles.dire;
+    viewStyle = styles.dire;
     imageStyle = styles.direImage;
     imageSource = direImageSource;
   }
@@ -26,18 +42,6 @@ export default function Screen(props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  radiant: {
-    backgroundColor: 'lightblue',
-  },
-  dire: {
-    backgroundColor: 'darkred',
-  },
-  radiantImage: {
-
-  },
-  direImage: {
-    
-  },
-});
+Screen.propTypes = {
+  isRadiant: PropTypes.bool.isRequired,
+};
