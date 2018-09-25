@@ -1,7 +1,7 @@
 import React from 'react';
-import Screen from './Screen';
+import Tower from './Tower';
 
-export default class Container extends React.Component {
+export default class TowerContainer extends React.Component {
   constructor() {
     super();
 
@@ -22,7 +22,7 @@ export default class Container extends React.Component {
   render() {
     const { isRadiant } = this.state;
     return (
-      <Screen isRadiant={isRadiant} />
+      <Tower isRadiant={isRadiant} onTowerPress={this.handleTowerPress} />
     );
   }
 }

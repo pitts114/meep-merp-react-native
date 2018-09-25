@@ -7,9 +7,17 @@ import direImageSource from '../assets/direTower.png';
 const styles = StyleSheet.create({
   radiant: {
     backgroundColor: 'lightblue',
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   dire: {
     backgroundColor: 'darkred',
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   radiantImage: {
 
@@ -19,7 +27,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Screen(props) {
+export default function Tower(props) {
   const {
     isRadiant,
   } = props;
@@ -42,6 +50,6 @@ export default function Screen(props) {
     </View>
   );
 }
-Screen.propTypes = {
+Tower.propTypes = {
   isRadiant: PropTypes.bool.isRequired,
 };
