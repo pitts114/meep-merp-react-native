@@ -32,13 +32,19 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
   },
+  depressedTower: {
+    width: '70%',
+    height: '70%',
+  },
 });
 
 export default function Tower(props) {
   const {
     isRadiant,
+    towerIsDepressed,
     onCourrierPress,
-    onTowerPress,
+    onTowerPressIn,
+    onTowerPressOut,
   } = props;
 
   let viewStyle;
@@ -46,19 +52,22 @@ export default function Tower(props) {
   let imageSource;
   if (isRadiant) {
     viewStyle = styles.radiant;
-    imageStyle = styles.radiantImage;
+    imageStyle = [styles.radiantImage];
     imageSource = radiantImageSource;
   } else {
     viewStyle = styles.dire;
-    imageStyle = styles.direImage;
+    imageStyle = [styles.direImage];
     imageSource = direImageSource;
+  }
+  if (towerIsDepressed) {
+    imageStyle.push(styles.depressedTower);
   }
   return (
     <View style={viewStyle}>
       <TouchableWithoutFeedback onPress={onCourrierPress}>
         <Image style={styles.courrier} source={courrierImageSource} />
       </TouchableWithoutFeedback>
-      <TouchableWithoutFeedback onPress={onTowerPress}>
+      <TouchableWithoutFeedback onPressIn={onTowerPressIn} onPressOut={onTowerPressOut}>
         <Image style={imageStyle} source={imageSource} />
       </TouchableWithoutFeedback>
     </View>
@@ -66,6 +75,8 @@ export default function Tower(props) {
 }
 Tower.propTypes = {
   isRadiant: PropTypes.bool.isRequired,
+  towerIsDepressed: PropTypes.bool.isRequired,
   onCourrierPress: PropTypes.func.isRequired,
-  onTowerPress: PropTypes.func.isRequired,
+  onTowerPressIn: PropTypes.func.isRequired,
+  onTowerPressOut: PropTypes.func.isRequired,
 };

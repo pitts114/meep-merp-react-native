@@ -9,7 +9,7 @@ let soundIsReady = false;
 
 soundObj.loadAsync(magicImmuneSound).then(() => { soundIsReady = true; });
 
-async function play() {
+async function playSound() {
   if (!soundIsReady) return;
   await soundObj.setPositionAsync(0);
   await soundObj.playAsync();
@@ -21,9 +21,12 @@ export default class TowerContainer extends React.Component {
 
     this.state = {
       isRadiant: true,
+      towerIsDepressed: false,
     };
 
     this.handleCourrierPress = this.handleCourrierPress.bind(this);
+    this.handleTowerPressIn = this.handleTowerPressIn.bind(this);
+    this.handleTowerPressOut = this.handleTowerPressOut.bind(this);
   }
 
   handleCourrierPress() {
@@ -33,10 +36,29 @@ export default class TowerContainer extends React.Component {
     });
   }
 
+  handleTowerPressIn() {
+    this.setState({
+      towerIsDepressed: true,
+    });
+  }
+
+  handleTowerPressOut() {
+    this.setState({
+      towerIsDepressed: false,
+    });
+    playSound();
+  }
+
   render() {
-    const { isRadiant } = this.state;
+    const { isRadiant, towerIsDepressed } = this.state;
     return (
-      <Tower isRadiant={isRadiant} onCourrierPress={this.handleCourrierPress} onTowerPress={play} />
+      <Tower
+        isRadiant={isRadiant}
+        towerIsDepressed={towerIsDepressed}
+        onCourrierPress={this.handleCourrierPress}
+        onTowerPressIn={this.handleTowerPressIn}
+        onTowerPressOut={this.handleTowerPressOut}
+      />
     );
   }
 }
