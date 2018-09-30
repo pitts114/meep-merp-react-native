@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
 export default function Tower(props) {
   const {
     isRadiant,
+    onCourrierPress,
     onTowerPress,
   } = props;
 
@@ -54,14 +55,17 @@ export default function Tower(props) {
   }
   return (
     <View style={viewStyle}>
-      <TouchableWithoutFeedback onPress={onTowerPress}>
+      <TouchableWithoutFeedback onPress={onCourrierPress}>
         <Image style={styles.courrier} source={courrierImageSource} />
       </TouchableWithoutFeedback>
-      <Image style={imageStyle} source={imageSource} />
+      <TouchableWithoutFeedback onPress={onTowerPress}>
+        <Image style={imageStyle} source={imageSource} />
+      </TouchableWithoutFeedback>
     </View>
   );
 }
 Tower.propTypes = {
   isRadiant: PropTypes.bool.isRequired,
+  onCourrierPress: PropTypes.func.isRequired,
   onTowerPress: PropTypes.func.isRequired,
 };
