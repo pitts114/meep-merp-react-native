@@ -21,9 +21,12 @@ export default class TowerContainer extends React.Component {
 
     this.state = {
       isRadiant: true,
+      isPressed: false,
     };
 
     this.handleCourrierPress = this.handleCourrierPress.bind(this);
+    this.handlePressIn = this.handlePressIn.bind(this);
+    this.handlePressOut = this.handlePressOut.bind(this);
   }
 
   handleCourrierPress() {
@@ -33,10 +36,32 @@ export default class TowerContainer extends React.Component {
     });
   }
 
+  handlePressIn() {
+    this.setState({
+      isPressed: true,
+    });
+  }
+
+  handlePressOut() {
+    this.setState({
+      isPressed: false,
+    });
+    play();
+  }
+
   render() {
-    const { isRadiant } = this.state;
+    const {
+      isRadiant,
+      isPressed,
+    } = this.state;
     return (
-      <Tower isRadiant={isRadiant} onCourrierPress={this.handleCourrierPress} onTowerPress={play} />
+      <Tower
+        isRadiant={isRadiant}
+        onCourrierPress={this.handleCourrierPress}
+        isPressed={isPressed}
+        onPressIn={this.handlePressIn}
+        onPressOut={this.handlePressOut}
+      />
     );
   }
 }
