@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
     height: 250,
   },
   towerPressed: {
-    width: 200,
-    height: 200,
+    width: 225,
+    height: 225,
   },
 });
 
